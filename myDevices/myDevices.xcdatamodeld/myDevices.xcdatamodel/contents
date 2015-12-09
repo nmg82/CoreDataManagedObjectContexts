@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Device" representedClassName=".Device" syncable="YES">
+        <attribute name="deviceID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceType" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="purchaseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="devices" inverseEntity="Person" syncable="YES"/>
+        <fetchedProperty name="purchasedOnSameDate" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Device" predicateString="purchaseDate == $FETCH_SOURCE.purchaseDate"/>
+        </fetchedProperty>
+    </entity>
+    <entity name="Person" representedClassName=".Person" syncable="YES">
+        <attribute name="name" attributeType="String" minValueString="2" indexed="YES" syncable="YES"/>
+        <relationship name="devices" toMany="YES" deletionRule="Cascade" destinationEntity="Device" inverseName="owner" inverseEntity="Device" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Device" positionX="-54" positionY="-9" width="128" height="164"/>
+        <element name="Person" positionX="-36" positionY="27" width="128" height="75"/>
+    </elements>
+</model>
